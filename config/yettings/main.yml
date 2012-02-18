@@ -1,0 +1,18 @@
+defaults: &defaults
+  
+  EMAIL_NOTIFICATION:
+      - ranieripieper@gmail.com
+      
+  CODE_SHOPPING_MORUMBI: 1
+  
+  CODE_CATEG_OUTROS: 1
+  
+   
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -24,6 +24,10 @@ gem 'jquery-rails'
 # mongo
 gem "mongoid", "~> 2.4"
 gem "bson_ext", "~> 1.5"
+gem 'hpricot'
+gem "yettings"
+gem "geocoder"
+gem 'exception_notification'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

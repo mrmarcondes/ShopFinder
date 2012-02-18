@@ -1,10 +1,14 @@
 development:
-  host: localhost
-  database: src_development
-
+  host: ds029807.mongolab.com
+  port: 29807
+  username: shopfinder
+  password: shopfinder
+  database: kdloja
+  autocreate_indexes: true
 test:
   host: localhost
   database: src_test
+  autocreate_indexes: true
 
 # set these environment variables on your prod server
 production:
@@ -13,6 +17,7 @@ production:
   username: <%= ENV['MONGOID_USERNAME'] %>
   password: <%= ENV['MONGOID_PASSWORD'] %>
   database: <%= ENV['MONGOID_DATABASE'] %>
+  autocreate_indexes: true
   # slaves:
   #   - host: slave1.local
   #     port: 27018
