@@ -43,7 +43,17 @@ class Store
       store.images = pStore.images
       store.address = pStore.address
       store.shopping = pStore.shopping
-      store.categories.concat(pStore.categories)
+      
+      if store.categories.nil? or store.categories.empty? then
+        store.categories.concat(pStore.categories)
+      else
+        pStore.categories.each do |categParam|
+          indexCateg = store.categories.index(categParam)
+          if (indexCateg.nil?) or (indexCateg < 0) then
+            store.categories.concat(categParam)
+          end
+        end
+      end
       
       store.save!
     end

@@ -4,6 +4,8 @@ defaults: &defaults
       - ranieripieper@gmail.com
       
   CODE_SHOPPING_MORUMBI: 1
+  CODE_SHOPPING_MARKETPLACE_SP: 2
+  CODE_SHOPPING_IGUATEMI_SP: 3
   
   CODE_CATEG_OUTROS: 1
   

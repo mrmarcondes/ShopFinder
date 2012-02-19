@@ -1,0 +1,86 @@
+defaults: &defaults
+    categories:
+      #CATEGORIA_SHOPPING : CODE_CATEGORIA_SHOPFINDER
+      "ACADEMIA": 2
+      "ACESSÓRIOS": 3
+      "ACESSÓRIOS INFANTIS": 2
+      "AGÊNCIA BANCÁRIA": 10
+      "AGÊNCIA DE CÂMBIO": 15
+      "AGÊNCIA DE VIAGENS": 5
+      "ARTIGOS PARA COZINHA": 1
+      "BANHO": 14
+      "BOLSAS": 3
+      "BORDADOS": 1
+      "BRINQUEDOS": 9
+      "CALÇADOS ESPORTIVOS": 13
+      "CALÇADOS FEMININOS": 13
+      "CALÇADOS INFANTIS": 13
+      "CALÇADOS MASCULINOS": 13
+      "CALÇADOS UNISSEX": 13
+      "CAMA": 14
+      "CARTUCHOS PARA IMPRESSORA": 25
+      "CHAVEIRO": 41
+      "CONSERTO DE ROUPAS": 41
+      "CONSERTOS": 41
+      "COSMÉTICOS": 42
+      "COSMÉTICOS NATURAIS": 42
+      "DECORAÇÃO": 4
+      "DROGARIA": 22
+      "ELETRODOMÉSTICOS": 20
+      "ELETRÔNICOS": 7
+      "ENTRETENIMENTO": 19
+      "FOTOS": 27
+      "GAMES": 24
+      "GRÁFICA EXPRESSA": 41
+      "JOALHERIA": 26
+      "JORNAIS E REVISTAS": 1
+      "LAVAGEM DE CARROS": 28
+      "LAVANDERIA": 41
+      "LIVRARIA": 30
+      "LIVRARIAS": 30
+      "LOJA DE VARIEDADES": 1
+      "LOTÉRICA": 41
+      "MALAS": 1
+      "MANICURE": 12
+      "MAQUIAGEM": 12
+      "MODA ESPORTIVA": 1
+      "MODA FEMININA": 1
+      "MODA INFANTIL": 1
+      "MODA ÍNTIMA": 29
+      "MODA ÍNTIMA FEMININA": 29
+      "MODA INTIMA UNISSEX": 29
+      "MODA MASCULINA": 1
+      "MODA PRAIA": 33
+      "MODA UNISSEX": 1
+      "ÓTICA": 26
+      "ÓTICAS": 26
+      "OURIVES": 1
+      "OUTROS": 1
+      "PAPELARIA": 35
+      "PAPELARIAS": 35
+      "PERFUMARIA": 12
+      "PODOLOGIA": 1
+      "PRESENTES": 37
+      "PRODUTOS DE LIMPEZA": 1
+      "QUADROS E MOLDURAS": 1
+      "RELÓGIOS": 26
+      "SALÃO DE BELEZA MASCULINO": 12
+      "SALÃO DE BELEZA UNISSEX": 12
+      "SERVIÇOS DE ENTREGA": 41
+      "SUPLEMENTOS ALIMENTARES": 1
+      "TABACARIA": 38
+      "TELEFONES": 39
+      "TELEFONIA MÓVEL": 39
+      "TURISMO": 5
+      "UNIFORMES": 1
+      "VARIEDADES": 1
+      "ALIMENTAÇÃO": 44
+  
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -55,6 +55,7 @@ task :insert_categories => :environment do
   insert(41, 'SERVIÇOS', 'SERVIÇOS')
   insert(42, 'COSMÉTICOS', 'COSMETICOS')
   insert(43, 'MODA JOVEM', 'MODA JOVEM')
+  insert(44, 'ALIMENTAÇÃO', 'ALIMENTAÇÃO')
   puts "**** Fim"
 end
 
