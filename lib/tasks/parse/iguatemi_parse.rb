@@ -14,6 +14,8 @@ class IguatemiParse
   URL_ROOT_IGUATEMI_SP = "http://www.iguatemisaopaulo.com.br/"
   URL_ROOT_IGUATEMI_ALPHAVILLE = "http://www.iguatemialphaville.com.br/"
   URL_ROOT_IGUATEMI_CAMPINAS = "http://www.iguatemicampinas.com.br/"
+  URL_ROOT_IGUATEMI_FLORIANOPOLIS = "http://www.iguatemiflorianopolis.com.br/"
+  URL_ROOT_IGUATEMI_BRASILIA = "http://www.iguatemibrasilia.com.br/"
   
   URL_SEARCH_STORES = "lojas/?categoria="
   URL_LIST_XML_STORES = "/xml/lojas/"
@@ -49,10 +51,23 @@ class IguatemiParse
     #Iguatemi Campinas
     shopping = createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_CAMPINAS, "Iguatemi Campinas", 
                                 "Av. Iguatemi", "777 ", "Vila Brandina", "Campinas", 
-                                "SP", "13092-500", "(19) 4005-9510 ");
+                                "SP", "13092-500", "(19) 4005-9510");
     parse_lojas(URL_ROOT_IGUATEMI_CAMPINAS, shopping, IguatemiYetting.categories);
 
-
+    #Iguatemi Florianópolis
+    shopping = createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_FLORIANOPOLIS, "Iguatemi Florianópolis", 
+                                "Av. Madre Benvenuta", "687 ", "Santa Mônica", "Florianópolis", 
+                                "SC", "", "(48) 3239-8700");
+    parse_lojas(URL_ROOT_IGUATEMI_FLORIANOPOLIS, shopping, IguatemiYetting.categories);
+    
+    
+     #Iguatemi Florianópolis
+    shopping = createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_BRASILIA, "Iguatemi Brasília", 
+                                "SHIN CA 4", "LOTE A ", "LAGO NORTE", "Brasília", 
+                                "DF", "", "(61) 3577-5000");
+    parse_lojas(URL_ROOT_IGUATEMI_BRASILIA, shopping, IguatemiYetting.categories);
+    
+    
     #send email com as categorias nao cadastradas
     if not @@categoriasNaoCadastradas.empty? then
       NotificationMailer.notification("Categorias", @@categoriasNaoCadastradas).deliver;
