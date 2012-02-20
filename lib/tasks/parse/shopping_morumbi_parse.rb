@@ -14,7 +14,9 @@ class ShoppingMorumbiParse
   URL_DETALHE_LOJA = "http://www.morumbishopping.com.br/novo_site/content/xml/lojas/"
   URL_PATH_IMAGEM_LOGO = "http://www.morumbishopping.com.br/novo_site/content/images/lojas/"
   URL_PATH_IMAGEM = "http://www.morumbishopping.com.br/novo_site/content/images/"
-  
+ 
+  @@categoriasNaoCadastradas = "";
+    
   def update
   
     #verifica se o shopping está na base
@@ -43,6 +45,11 @@ class ShoppingMorumbiParse
     #parse_categorias(shopping)
     parse_lojas(shopping)
   
+    #send email com as categorias nao cadastradas
+    if not @@categoriasNaoCadastradas.empty? then
+      NotificationMailer.notification("Categorias", @@categoriasNaoCadastradas).deliver;
+    end
+    
   end
   
   def parse_categorias(shopping)
@@ -121,6 +128,7 @@ class ShoppingMorumbiParse
       if codeShoppingCat.nil? then
           codeShoppingCat = MainYetting.CODE_CATEG_OUTROS
           puts "***** Categoria não existe " + codeShoppingCategory
+          @@categoriasNaoCadastradas +=  shopping.name + " - " + categ + "<br/>"
       end
       category = Category.first(conditions: { code: codeShoppingCat })
       store.categories.concat(category)

@@ -14,7 +14,7 @@ class NotificationMailer < ActionMailer::Base
 
   end
   
-  def notifiation(subject, message)
+  def notification(subject, message)
     @message = message
 
     mail(:to => "ranieripieper@gmail.com", :subject => "[ShopFinder] " + subject) do |format|

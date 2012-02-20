@@ -3,8 +3,10 @@ defaults: &defaults
       #CATEGORIA_SHOPPING : CODE_CATEGORIA_SHOPFINDER
       "ACADEMIA": 2
       "ACESSÓRIOS": 3
+      "ACESSÓRIOS FEMININOS": 3
       "ACESSÓRIOS INFANTIS": 2
       "AGÊNCIA BANCÁRIA": 10
+      "BANCOS": 10
       "AGÊNCIA DE CÂMBIO": 15
       "AGÊNCIA DE VIAGENS": 5
       "ARTIGOS PARA COZINHA": 1
@@ -26,6 +28,7 @@ defaults: &defaults
       "COSMÉTICOS NATURAIS": 42
       "DECORAÇÃO": 4
       "DROGARIA": 22
+      "FARMÁCIAS": 22
       "ELETRODOMÉSTICOS": 20
       "ELETRÔNICOS": 7
       "ENTRETENIMENTO": 19
@@ -33,6 +36,8 @@ defaults: &defaults
       "GAMES": 24
       "GRÁFICA EXPRESSA": 41
       "JOALHERIA": 26
+      "JOALHERIAS" : 26
+      "BIJOUTERIAS": 26
       "JORNAIS E REVISTAS": 1
       "LAVAGEM DE CARROS": 28
       "LAVANDERIA": 41
@@ -47,6 +52,7 @@ defaults: &defaults
       "MODA FEMININA": 1
       "MODA INFANTIL": 1
       "MODA ÍNTIMA": 29
+      "MODA íNTIMA": 29
       "MODA ÍNTIMA FEMININA": 29
       "MODA INTIMA UNISSEX": 29
       "MODA MASCULINA": 1
@@ -64,9 +70,11 @@ defaults: &defaults
       "PRODUTOS DE LIMPEZA": 1
       "QUADROS E MOLDURAS": 1
       "RELÓGIOS": 26
+      "RELOJOARIAS": 26
       "SALÃO DE BELEZA MASCULINO": 12
       "SALÃO DE BELEZA UNISSEX": 12
       "SERVIÇOS DE ENTREGA": 41
+      "SERVIÇOS": 41
       "SUPLEMENTOS ALIMENTARES": 1
       "TABACARIA": 38
       "TELEFONES": 39
