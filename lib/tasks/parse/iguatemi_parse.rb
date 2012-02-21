@@ -6,6 +6,7 @@ require 'hpricot'
 require 'yettings'
 require 'geocoder'
 require 'brazilian_string'
+require 'iconv'
 
 class IguatemiParse
 
@@ -20,6 +21,15 @@ class IguatemiParse
   URL_SEARCH_STORES = "lojas/?categoria="
   URL_LIST_XML_STORES = "/xml/lojas/"
   
+  #MODELO 2
+  URL_ROOT_IGUATEMI_SAO_CARLOS = "http://www.iguatemisaocarlos.com.br/"
+  URL_ROOT_IGUATEMI_BOULEVARD_RIO = "http://www.boulevardrioiguatemi.com.br/"
+  URL_ROOT_IGUATEMI_PRAIA_BELAS = "http://www.praiadebelas.com.br/"
+  URL_ROOT_IGUATEMI_GALLERIA =  "http://www.galleriashopping.com.br/"
+  
+  URL_SEARCH_STORES_MOD_2 = "page/ajx_lojasporsegmento.asp"
+  URL_DETAIL_STORE_MOD_2 = "page/lojas.asp?cod="
+  
   @@categoriasNaoCadastradas = "";
   def update
     puts "*** Início Iguatemi"
@@ -29,6 +39,28 @@ class IguatemiParse
   
   def updateIguatemi
     #print_categoriasIguatemi(URL_ROOT_IGUATEMI_SP)
+
+    #MODELO2
+    shopping = createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_SAO_CARLOS, "Shopping Iguatemi São Carlos", 
+                                "Passeio dos Flamboyants", "200", "Parque Faber", "São Carlos", 
+                                "SP", "13561-352", "(16) 3372-4233");
+    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_SAO_CARLOS, shopping, IguatemiYetting.categories);
+    
+
+    shopping = createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_BOULEVARD_RIO, "Shopping Boulevard Rio Iguatemi", 
+                                "Rua Barão de São Francisco", "", "Vila Isabel", "Rio de Janeiro", 
+                                "RJ", "13561-352", "(21) 2577-8777");
+    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_BOULEVARD_RIO, shopping, IguatemiYetting.categories);
+    
+    shopping = createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_PRAIA_BELAS, "Shopping Praia de Belas", 
+                                "Av. Praia de Belas", "1181", "Menino Deus", "Porto Alegre", 
+                                "RS", "90110-000", "(51) 3131-1700");
+    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_PRAIA_BELAS, shopping, IguatemiYetting.categories);
+    
+    shopping = createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_GALLERIA, "Galleria Shopping", 
+                                "Rodovia Dom Pedro I, km 1315", "", "Jardim Nilópolis", "Campinas", 
+                                "SP", "13561-352", "(19) 3207-1333");
+    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_GALLERIA, shopping, IguatemiYetting.categories);
 
     #marketplace
     shopping = createShopping(MainYetting.CODE_SHOPPING_MARKETPLACE_SP, "Shopping Market Place", 
@@ -74,8 +106,134 @@ class IguatemiParse
     end
   end
   
-  def parse_lojas(rootUrl, shopping, mapCategories)
-    puts "[ Parse Lojas ] " + rootUrl
+  def parse_lojas_modelo_2(rootUrl, shopping, mapCategories)
+    puts "[ Parse Lojas  Modelo 2] " + rootUrl + URL_SEARCH_STORES_MOD_2
+
+    f = open(rootUrl + URL_SEARCH_STORES_MOD_2)
+    f.rewind
+    doc = Hpricot(Iconv.conv('utf-8', f.charset, f.readlines.join("\n")))
+
+    (doc/"//div").each do |div|
+      
+      onclick = div.attributes['onclick']
+      onclick = onclick.gsub("definirLoja(", "")
+      posVirgula = onclick.index(",")
+      code = onclick[0, posVirgula]
+      parse_loja_modelo_2(rootUrl, shopping, mapCategories, code)
+      
+    end
+
+    shopping.nrSotres = Store.count(conditions: { shopping_id: shopping.id })
+    
+    shopping.save
+  end
+
+  def parse_loja_modelo_2(rootUrl, shopping, mapCategories, code)
+
+    f = open(rootUrl + URL_DETAIL_STORE_MOD_2 + code)
+    f.rewind
+    doc = Hpricot(Iconv.conv('utf-8', f.charset, f.readlines.join("\n")))
+
+    table = doc.search("//table[@class=texto_branco]").search("//table[@width=92%]")
+    logo = nil
+    img = table.search("img").first
+    if not img.nil? then
+      logo = img.attributes['src'].gsub("../", "")
+    end
+    
+    info = table.search("//td[@class=tit_filme]")
+    
+    nameCateg = info.at('strong').innerText
+    descPhone = info.search("//span[@class=texto_marron]").first.innerText
+    
+    name = nil
+    categoryArray = Array.new
+    nameCateg.each_line do |str|
+      if "" == str.strip then
+        next
+      end
+      if name.nil? then
+        name = str.strip
+      else
+        categoryArray.push(str.strip)
+      end
+    end
+
+    description = nil
+    phone = nil
+    site = nil
+    descPhone.each_line do |str|
+      if "" == str.strip then
+        next
+      end
+      if not str.downcase.index("descrição").nil? then
+        description = str.gsub("Descrição:", "").strip
+        next
+      end
+
+      if not str.downcase.index("telefone").nil? then
+        phone = str.gsub("Telefone:", "").strip
+        next
+      end
+
+      if not str.downcase.index("site").nil? then
+        site = str.gsub("Site:", "").strip
+        next
+      end 
+    end
+    
+    puts name
+
+    store = Store.new
+    store.code = code
+    store.name = name
+    store.description =  description
+    #store.localization = localization
+    #store.floor = floor
+    #store.number = number
+    store.phone_1 = phone
+    store.site = site
+    if !logo.nil? and !logo.empty? then
+        store.url_img_logo = rootUrl + logo
+    end
+    
+    store.address = shopping.address
+    store.shopping = shopping
+
+    #busca categoria
+    categOther = false
+    categoryArray.each do |categ|
+      categStr = categ.strip.br_upcase
+
+      codeShoppingCat = mapCategories[categStr]
+      if codeShoppingCat.nil? then
+            categOther = true
+            puts "***** Categoria não existe " + categStr
+            @@categoriasNaoCadastradas +=  shopping.name + " - " + categ + "<br/>"
+      else
+        category = Category.first(conditions: { code: codeShoppingCat })
+        store.categories.concat(category)
+      end
+    end
+    
+    if store.categories.nil? then
+      puts "tamanho: " + store.categories.size
+    end
+
+
+    if categOther and (store.categories.nil? or store.categories.size == 0) then
+      codeShoppingCat = MainYetting.CODE_CATEG_OUTROS
+      categoryOther = Category.first(conditions: { code: codeShoppingCat })
+      store.categories.concat(categoryOther)
+    end
+
+    store = Store::saveStore(store)
+
+
+  end
+  
+ def parse_lojas(rootUrl, shopping, mapCategories)
+    puts "[ Parse Lojas] " + rootUrl
 
     doc = open(rootUrl + URL_LIST_XML_STORES) { |f| Hpricot(f) }
   
@@ -93,7 +251,6 @@ class IguatemiParse
     end
       
   end
-  
   
   def parse_loja(rootUrl, shopping, xml, mapCategories)
     puts "Parse Loja"
@@ -177,9 +334,7 @@ class IguatemiParse
 
     store = Store::saveStore(store)
 
-    shopping.nrSotres = Store.count(conditions: { shopping_id: shopping.id })
-    
-    shopping.save
+
          
   end
 

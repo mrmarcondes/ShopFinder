@@ -74,16 +74,17 @@ class ShoppingMorumbiParse
   def parse_lojas(shopping)
     puts "[ Parse Lojas ]"
     #busca as categorias do shopping
-    ShoppingCategory.all(conditions: { shopping_id: shopping.id }).each do |category| 
+    ShoppingMorumbiYetting.categories.each { |key,value| 
+    #ShoppingCategory.all(conditions: { shopping_id: shopping.id }).each do |category| 
   
-      f = open(URL_LISTA_LOJA_CATEGORIA + category.code)
+      f = open(URL_LISTA_LOJA_CATEGORIA + key)
         
       doc = Hpricot.XML(f)
     
       (doc/"dados/item").each do |item|
-        parse_loja(shopping, category.code, item.at('xml').inner_text, item.at('mapas/mapa/piso').inner_text, item.at('mapas/mapa/luc').inner_text)
+        parse_loja(shopping, key, item.at('xml').inner_text, item.at('mapas/mapa/piso').inner_text, item.at('mapas/mapa/luc').inner_text)
       end
-    end
+    }
     
     puts "[Fim parse Lojas]" 
     

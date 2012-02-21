@@ -54,6 +54,7 @@ defaults: &defaults
       "MALAS": 1
       "MANICURE": 12
       "MAQUIAGEM": 12
+      "MODA": 1
       "MODA ESPORTIVA": 1
       "MODA FEMININA": 1
       "MODA INFANTIL": 1
@@ -89,6 +90,7 @@ defaults: &defaults
       "TECNOLOGIA": 25
       "TELEFONIA MÓVEL": 39
       "TELEFONES & CELULARES" : 39
+      "TELEFONES E CELULARES" : 39
       "TURISMO": 5
       "UNIFORMES": 1
       "VARIEDADES": 1
