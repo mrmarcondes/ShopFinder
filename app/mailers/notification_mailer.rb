@@ -8,7 +8,7 @@ class NotificationMailer < ActionMailer::Base
     @codeCateg = codeCateg
     @store = store
 
-    mail(:to => "ranieripieper@gmail.com", :subject => "[ShopFinder] Categoria não encontrada") do |format|
+    mail(:to => MainYetting.EMAIL_NOTIFICATION, :subject => "[ShopFinder] Categoria não encontrada") do |format|
       format.html { render 'notification_email_category_dont_exist' } #app/view/notification_email.html.erb
     end
 
@@ -17,7 +17,7 @@ class NotificationMailer < ActionMailer::Base
   def notification(subject, message)
     @message = message
 
-    mail(:to => "ranieripieper@gmail.com", :subject => "[ShopFinder] " + subject) do |format|
+    mail(:to => MainYetting.EMAIL_NOTIFICATION, :subject => "[ShopFinder] " + subject) do |format|
       format.html { render 'notification_email' } #app/view/notification_email.html.erb
     end
 

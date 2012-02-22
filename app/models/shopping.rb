@@ -3,11 +3,11 @@ class Shopping
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  field :code,        :type => String
+  field :id,        :type => Integer
   field :name,        :type => String
   field :phone,       :type => String
   field :email,       :type => String
-  field :nrSotres,    :type => Integer
+  field :nr_stores,    :type => Integer
   
   embeds_one :address, as: :addressed
   has_many :stores

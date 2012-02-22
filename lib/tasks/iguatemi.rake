@@ -7,6 +7,7 @@ require 'yettings'
 require 'geocoder'
 
 require File.join(File.dirname(__FILE__), '/parse/iguatemi_parse')
+require File.join(File.dirname(__FILE__), '/parse/parse_util')
 
 desc "Update Iguatemi"
 task :update_iguatemi => :environment do

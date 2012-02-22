@@ -19,29 +19,10 @@ class ShoppingMorumbiParse
     
   def update
   
-    #verifica se o shopping está na base
-    shopping = Shopping.first(conditions: { code: MainYetting.CODE_SHOPPING_MORUMBI })
-  
-    if shopping.nil? then
-      #cria o shopping
-      shopping = Shopping.new 
-      
-    end
+    shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_MORUMBI, "Shopping Morumbi", 
+                                "Av. Roque Petroni Jr.", "1089", "Morumbi", "São Paulo", 
+                                "SP", "04707-000", "(11) 4003-4132");
     
-    shopping.code = MainYetting.CODE_SHOPPING_MORUMBI
-    shopping.name = "Shopping Morumbi"
-    shopping.address = Address.new
-    shopping.address.street = "Av. Roque Petroni Jr."
-    shopping.address.number = "1089"
-    shopping.address.neighborhood = "Morumbi"
-    shopping.address.city = "São Paulo"
-    shopping.address.state = "SP"
-    shopping.address.zip_code = "04707-000"
-    shopping.phone = "(11) 4003-4132"
-    
-    puts "*** Salvando shopping"
-  
-    shopping.save
     #parse_categorias(shopping)
     parse_lojas(shopping)
   
@@ -86,6 +67,8 @@ class ShoppingMorumbiParse
       end
     }
     
+    ParseUtil::updateNrStores(shopping)
+    
     puts "[Fim parse Lojas]" 
     
   end
@@ -106,6 +89,8 @@ class ShoppingMorumbiParse
       site = item.at('url').inner_text
       logo = item.at('logo').inner_text
   
+      puts name
+      
       store = Store.new
       store.code = code
       store.name = name
@@ -124,15 +109,8 @@ class ShoppingMorumbiParse
       store.address = shopping.address
       store.shopping = shopping
       
-      #busca categoria
-      codeShoppingCat = ShoppingMorumbiYetting.categories[codeShoppingCategory]
-      if codeShoppingCat.nil? then
-          codeShoppingCat = MainYetting.CODE_CATEG_OUTROS
-          puts "***** Categoria não existe " + codeShoppingCategory
-          @@categoriasNaoCadastradas +=  shopping.name + " - " + categ + "<br/>"
-      end
-      category = Category.first(conditions: { code: codeShoppingCat })
-      store.categories.concat(category)
+      #seta categoria
+      @@categoriasNaoCadastradas += ParseUtil::setCategories(store, codeShoppingCategory.split(","), ShoppingMorumbiYetting.categories, shopping)
       
       #imagens
       (item/"imagem/imagem_item").each do |img|
@@ -154,10 +132,6 @@ class ShoppingMorumbiParse
       end
       
       store = Store::saveStore(store)
-  
-      shopping.nrSotres = Store.count(conditions: { shopping_id: shopping.id })
-      
-      shopping.save
     end
   end
   

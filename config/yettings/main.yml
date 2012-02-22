@@ -1,7 +1,6 @@
 defaults: &defaults
   
-  EMAIL_NOTIFICATION:
-      - ranieripieper@gmail.com
+  EMAIL_NOTIFICATION: ranieripieper@gmail.com, ranipieper@hotmail.com
       
   CODE_SHOPPING_MORUMBI: 1
   CODE_SHOPPING_MARKETPLACE_SP: 2
@@ -15,6 +14,55 @@ defaults: &defaults
   CODE_SHOPPING_IGUATEMI_PRAIA_BELAS: 10
   CODE_SHOPPING_IGUATEMI_GALLERIA: 11
   
+  
+  #INÍCIO categorias defaults
+  default_categories:
+    1: "OUTROS"
+    2: "ACADEMIA DE GINÁSTICA"
+    3: "ACESSÓRIOS"
+    4: "DECORAÇÃO"
+    5: "TURISMO/VIAGENS"
+    6: "ARMARINHO"
+    7: "ELETÔNICOS"
+    8: "ARTIGOS ESPORTIVOS"
+    9: "ARTIGOS INFANTIS"
+    10: "BANCOS"
+    11: "BRINQUEDOS"
+    12: "BELEZA"
+    13: "CALÇADOS"
+    14: "CAMA/MESA/BANHO"
+    15: "CASAS DE CÂMBIO"
+    16: "CDS/DVDS"
+    17: "CINEMAS"
+    18: "DELICATESSEN"
+    19: "LAZER"
+    20: "ELETRODOMÉSTICOS"
+    21: "ESTÉTICA"
+    22: "FARMÁCIA/DROGARIA"
+    23: "FLORES"
+    24: "GAMES"
+    25: "INFORMÁTICA"
+    26: "JÓIAS/RELÓGIOS/ÓTICA"
+    27: "FOTO REVELAÇÃO"
+    28: "LAVA RÁPIDO"
+    29: "MODA ÍNTIMA (LINGERIE/MEIAS)"
+    30: "LIVRARIA"
+    31: "LOJA DE DEPARTAMENTOS"
+    32: "LOUÇAS/CRISTAIS/PRATARIAS"
+    33: "MODA PRAIA (BIQUINIS/MAIÔS/SUNGAS)"
+    34: "ARTIGOS DO LAR"
+    35: "PAPELARIA"
+    36: "PETSHOP"
+    37: "PRESENTE/SOUVENIR"
+    38: "TABACARIA"
+    39: "TELEFONES/ACESSÓRIOS"
+    40: "VESTUÁRIO"
+    41: "SERVIÇOS"
+    42: "COSMÉTICOS"
+    43: "MODA JOVEM"
+    44: "ALIMENTAÇÃO"
+  
+  #FIM categorias defaults
   CODE_CATEG_OUTROS: 1
   
    
