@@ -23,9 +23,12 @@ class Store
   has_and_belongs_to_many :categories
   
   def self.saveStore(pStore)
-    store = Store.first(conditions: { code: pStore.code, shopping_id: pStore.shopping.id })
+
+    store = Store.first(conditions: { code: pStore.code, shopping_id: pStore.shopping._id })
+
     if store.nil? then
       store = Store.new
+      store.code = pStore.code
     end
 
     store.name = pStore.name
