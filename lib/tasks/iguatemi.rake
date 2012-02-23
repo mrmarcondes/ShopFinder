@@ -14,14 +14,14 @@ task :update_iguatemi => :environment do
 
   puts "**** Inicio update Iguatemi"
 
-  iguatemiParse = IguatemiParse.new
-  iguatemiParse.update()
- # begin
- #   updateIguatemi()
- # rescue  => e
- #   ExceptionNotifier::Notifier.background_exception_notification(e)
- #   puts "******** ERROR ********"
- # end
+  begin
+    iguatemiParse = IguatemiParse.new
+    iguatemiParse.update()
+  rescue  => e
+    ExceptionNotifier::Notifier.background_exception_notification(e)
+    puts "******** ERROR ********"
+    puts e
+  end
   puts "**** Fim update Iguatemi"
 end
 

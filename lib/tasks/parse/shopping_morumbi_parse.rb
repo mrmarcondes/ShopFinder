@@ -21,7 +21,7 @@ class ShoppingMorumbiParse
   
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_MORUMBI, "Shopping Morumbi", 
                                 "Av. Roque Petroni Jr.", "1089", "Morumbi", "São Paulo", 
-                                "SP", "04707-000", "(11) 4003-4132");
+                                "SP", "04707-000", "(11) 4003-4132", "http://www.morumbishopping.com.br/");
     
     #parse_categorias(shopping)
     parse_lojas(shopping)

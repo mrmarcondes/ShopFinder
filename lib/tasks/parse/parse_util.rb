@@ -41,7 +41,7 @@ class ParseUtil
     return @categoriasNaoCadastradas
   end
   
-  def self.createShopping(code, name, street, number, neighborhood, city, state, zip_code, phone)
+  def self.createShopping(code, name, street, number, neighborhood, city, state, zip_code, phone, site)
     shopping = Shopping.first(conditions: { _id: code })
   
     if shopping.nil? then
@@ -60,7 +60,7 @@ class ParseUtil
     shopping.address.state = state
     shopping.address.zip_code = zip_code
     shopping.phone = phone
-    
+    shopping.site = site
     shopping.save
     
     return shopping

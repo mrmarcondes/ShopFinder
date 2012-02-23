@@ -43,61 +43,63 @@ class IguatemiParse
     #MODELO2
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_SAO_CARLOS, "Shopping Iguatemi São Carlos", 
                                 "Passeio dos Flamboyants", "200", "Parque Faber", "São Carlos", 
-                                "SP", "13561-352", "(16) 3372-4233");
-    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_SAO_CARLOS, shopping, IguatemiYetting.categories);
+                                "SP", "13561-352", "(16) 3372-4233", "http://www.iguatemisaocarlos.com.br/");
+    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_SAO_CARLOS, shopping, ShoppingCategoryDescriptionYetting.categories);
     
 
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_BOULEVARD_RIO, "Shopping Boulevard Rio Iguatemi", 
                                 "Rua Barão de São Francisco", "", "Vila Isabel", "Rio de Janeiro", 
-                                "RJ", "13561-352", "(21) 2577-8777");
-    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_BOULEVARD_RIO, shopping, IguatemiYetting.categories);
+                                "RJ", "13561-352", "(21) 2577-8777", "http://www.boulevardrioiguatemi.com.br/");
+    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_BOULEVARD_RIO, shopping, ShoppingCategoryDescriptionYetting.categories);
     
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_PRAIA_BELAS, "Shopping Praia de Belas", 
                                 "Av. Praia de Belas", "1181", "Menino Deus", "Porto Alegre", 
-                                "RS", "90110-000", "(51) 3131-1700");
-    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_PRAIA_BELAS, shopping, IguatemiYetting.categories);
+                                "RS", "90110-000", "(51) 3131-1700", "http://www.praiadebelas.com.br/");
+    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_PRAIA_BELAS, shopping, ShoppingCategoryDescriptionYetting.categories);
     
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_GALLERIA, "Galleria Shopping", 
                                 "Rodovia Dom Pedro I, km 1315", "", "Jardim Nilópolis", "Campinas", 
-                                "SP", "13561-352", "(19) 3207-1333");
-    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_GALLERIA, shopping, IguatemiYetting.categories);
+                                "SP", "13561-352", "(19) 3207-1333", "http://www.galleriashopping.com.br/");
+    parse_lojas_modelo_2(URL_ROOT_IGUATEMI_GALLERIA, shopping, ShoppingCategoryDescriptionYetting.categories);
 
+    ##MODELO 1
+  
     #marketplace
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_MARKETPLACE_SP, "Shopping Market Place", 
                                 "Av. Dr. Chucri Zaidan", "902", "Santo Amaro", "São Paulo", 
-                                "SP", "04583-110", "(11)3048-7000");
-    parse_lojas(URL_ROOT_MARKETPLACE, shopping, IguatemiYetting.categories);
+                                "SP", "04583-110", "(11)3048-7000", "http://www.marketplace.com.br/");
+    parse_lojas(URL_ROOT_MARKETPLACE, shopping, ShoppingCategoryDescriptionYetting.categories);
     
     #Iguatemi
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_SP, "Iguatemi São Paulo", 
                                 "Av. Brigadeiro Faria Lima", "2232 ", "Jardim Paulistano", "São Paulo", 
-                                "SP", "01451-000", "(11) 3816-6116");
-    parse_lojas(URL_ROOT_IGUATEMI_SP, shopping, IguatemiYetting.categories);
+                                "SP", "01451-000", "(11) 3816-6116", "http://www.iguatemisaopaulo.com.br/");
+    parse_lojas(URL_ROOT_IGUATEMI_SP, shopping, ShoppingCategoryDescriptionYetting.categories);
     
     #Iguatemi Alphaville
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_ALPHAVILLE, "Iguatemi Alphaville", 
                                 "Alameda Rio Negro", "111 ", "Alphaville Industrial", "Barueri", 
-                                "SP", "06454-000", "(11) 2078-8000");
-    parse_lojas(URL_ROOT_IGUATEMI_ALPHAVILLE, shopping, IguatemiYetting.categories);
+                                "SP", "06454-000", "(11) 2078-8000", "http://www.iguatemialphaville.com.br/");
+    parse_lojas(URL_ROOT_IGUATEMI_ALPHAVILLE, shopping, ShoppingCategoryDescriptionYetting.categories);
     
     #Iguatemi Campinas
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_CAMPINAS, "Iguatemi Campinas", 
                                 "Av. Iguatemi", "777 ", "Vila Brandina", "Campinas", 
-                                "SP", "13092-500", "(19) 4005-9510");
-    parse_lojas(URL_ROOT_IGUATEMI_CAMPINAS, shopping, IguatemiYetting.categories);
+                                "SP", "13092-500", "(19) 4005-9510", "http://www.iguatemicampinas.com.br/");
+    parse_lojas(URL_ROOT_IGUATEMI_CAMPINAS, shopping, ShoppingCategoryDescriptionYetting.categories);
 
     #Iguatemi Florianópolis
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_FLORIANOPOLIS, "Iguatemi Florianópolis", 
                                 "Av. Madre Benvenuta", "687 ", "Santa Mônica", "Florianópolis", 
-                                "SC", "", "(48) 3239-8700");
-    parse_lojas(URL_ROOT_IGUATEMI_FLORIANOPOLIS, shopping, IguatemiYetting.categories);
+                                "SC", "", "(48) 3239-8700", "http://www.iguatemiflorianopolis.com.br/");
+    parse_lojas(URL_ROOT_IGUATEMI_FLORIANOPOLIS, shopping, ShoppingCategoryDescriptionYetting.categories);
     
     
      #Iguatemi Florianópolis
     shopping = ParseUtil::createShopping(MainYetting.CODE_SHOPPING_IGUATEMI_BRASILIA, "Iguatemi Brasília", 
                                 "SHIN CA 4", "LOTE A ", "LAGO NORTE", "Brasília", 
-                                "DF", "", "(61) 3577-5000");
-    parse_lojas(URL_ROOT_IGUATEMI_BRASILIA, shopping, IguatemiYetting.categories);
+                                "DF", "", "(61) 3577-5000", "http://www.iguatemibrasilia.com.br/");
+    parse_lojas(URL_ROOT_IGUATEMI_BRASILIA, shopping, ShoppingCategoryDescriptionYetting.categories);
     
     
     #send email com as categorias nao cadastradas

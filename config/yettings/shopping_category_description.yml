@@ -33,6 +33,7 @@ defaults: &defaults
       "DROGARIA": 22
       "FARMÁCIAS": 22
       "FARMÁCIA": 22
+      "FARMÁCIAS E DROGARIAS" : 11
       "ELETRODOMÉSTICOS": 20
       "ELETRÔNICOS": 7
       "ENTRETENIMENTO": 19
@@ -55,6 +56,7 @@ defaults: &defaults
       "MANICURE": 12
       "MAQUIAGEM": 12
       "MODA": 1
+      "MODA GERAL": 1
       "MODA ESPORTIVA": 1
       "MODA FEMININA": 1
       "MODA INFANTIL": 1
@@ -66,6 +68,8 @@ defaults: &defaults
       "MODA PRAIA": 33
       "MODA UNISSEX": 1
       "ÓTICA": 26
+      "ÓTICAS / APARELHOS AUDITIVOS": 26
+      "JÓIAS / RELÓGIOS / ÓCULOS": 26
       "ÓPTICA": 26
       "ÓPTICAS": 26
       "ÓTICAS": 26
