@@ -12,11 +12,11 @@ test:
 
 # set these environment variables on your prod server
 production:
-  host: <%= ENV['MONGOID_HOST'] %>
-  port: <%= ENV['MONGOID_PORT'] %>
-  username: <%= ENV['MONGOID_USERNAME'] %>
-  password: <%= ENV['MONGOID_PASSWORD'] %>
-  database: <%= ENV['MONGOID_DATABASE'] %>
+  host: ds029807.mongolab.com
+  port: 29807
+  username: shopfinder
+  password: shopfinder
+  database: kdloja
   autocreate_indexes: true
   # slaves:
   #   - host: slave1.local
