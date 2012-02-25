@@ -1,4 +1,8 @@
 ShopFinder::Application.routes.draw do
+  
+  match 'shoppings' => 'shoppings#all', :via => :get
+  match 'shoppings/:id' => 'shoppings#id', :via => :get
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:
