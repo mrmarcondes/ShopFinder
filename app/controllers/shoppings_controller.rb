@@ -6,6 +6,10 @@ class ShoppingsController < ApplicationController
   end
   
   def id
-    respond_with(@shopping = Shopping.where(id: params[:id]))
+    begin
+      respond_with(@shopping = Shopping.find(params[:id].to_i))
+    rescue 
+      head 404
+    end
   end
 end
