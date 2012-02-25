@@ -1,9 +1,6 @@
 development:
-  host: ds029807.mongolab.com
-  port: 29807
-  username: shopfinder
-  password: shopfinder
-  database: kdloja
+  host: localhost 
+  database: ShopFinder-dev
   autocreate_indexes: true
 test:
   host: localhost
