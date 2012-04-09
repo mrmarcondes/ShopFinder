@@ -12,4 +12,10 @@ class ShoppingsController < ApplicationController
       head 404
     end
   end
+  
+  def location
+    x = params[:x].to_f
+    y = params[:y].to_f
+    respond_with(@shoppings = Shopping.near("address.location" => [x, y]).limit(5))
+  end
 end

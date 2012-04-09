@@ -8,8 +8,10 @@ class Shopping
   field :email,        :type => String
   field :site,         :type => String
   field :nr_stores,    :type => Integer
-  
   embeds_one :address, as: :addressed
+  index [["address.location", Mongo::GEO2D ]]
+  
+
   has_many :stores
 
   before_save :set_location

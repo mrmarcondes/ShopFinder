@@ -2,6 +2,7 @@ ShopFinder::Application.routes.draw do
   
   match 'shoppings' => 'shoppings#all', :via => :get
   match 'shoppings/:id' => 'shoppings#id', :via => :get
+  match 'location' => 'shoppings#location', :via => :get
   match 'shoppings/:shopping_id/stores' => 'stores#all_by_shopping', :via => :get
 
   root :to => "home#index"

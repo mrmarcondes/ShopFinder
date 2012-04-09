@@ -1,7 +1,6 @@
-require 'geocoder'
-
 class Address
   include Mongoid::Document
+
   field :street, type: String
   field :number, type: String
   field :complement, type: String
@@ -9,8 +8,8 @@ class Address
   field :zip_code, type: String
   field :city, type: String
   field :state, type: String
-  field :location, type: Array, :geo => true
-  index [[ :location, Mongo::GEO2D ]], :min => -180, :max => 180
+  field :location, type: Array
+  
   
   embedded_in :addressed, polymorphic: true
 end
